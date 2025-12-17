@@ -14,17 +14,17 @@ void forward(){
 void turn_right(){
   motor1.stop();
   motor2.stop();
-  motor1.run(105);
-  motor2.run(105);
-  delay(550);
+  motor1.run(100);
+  motor2.run(100);
+  delay(575);
 }
 
 void turn_left(){
   motor1.stop();
   motor2.stop();
-  motor1.run(-105); 
-  motor2.run(-105);
-  delay(550);
+  motor1.run(-100); 
+  motor2.run(-100);
+  delay(575);
 }
 
 void setup() {
@@ -35,12 +35,12 @@ void loop() {
   Serial.print("Distance: ");
   Serial.print(ultraSonic.distanceCm());
   Serial.println(" cm");
-  if (ultraSonic.distanceCm() >  8){
+  if (ultraSonic.distanceCm() >  6){
     forward(); //go forward until there is a wall
   } else {
     if (turned_right == false){
       turn_right(); //if the mBot hasn't tried turning right yet, turn right
-      if (ultraSonic.distanceCm() <=  8){
+      if (ultraSonic.distanceCm() <=  10){
         turned_right = true;
         turn_left(); //if the mBot tried turning right and there is still a wall infront of it do a left turn
       }
